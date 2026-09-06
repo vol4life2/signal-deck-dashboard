@@ -17,6 +17,10 @@
     --btc-soft: #f3e2ce;
     --eth: #5462c4;
     --eth-soft: #e3e5f8;
+    --sol: #8b5cf6;
+    --sol-soft: #ede9fe;
+    --xrp: #0891b2;
+    --xrp-soft: #cffafe;
     --bull: #2f8f61;
     --bull-soft: #dcf0e5;
     --bear: #c14a5f;
@@ -36,6 +40,10 @@
       --btc-soft: #3a2a1a;
       --eth: #8b9eff;
       --eth-soft: #232a4a;
+      --sol: #b794f6;
+      --sol-soft: #2e2350;
+      --xrp: #22d3ee;
+      --xrp-soft: #123a42;
       --bull: #4caf82;
       --bull-soft: #1c3327;
       --bear: #e0637a;
@@ -55,6 +63,10 @@
     --btc-soft: #3a2a1a;
     --eth: #8b9eff;
     --eth-soft: #232a4a;
+    --sol: #b794f6;
+    --sol-soft: #2e2350;
+    --xrp: #22d3ee;
+    --xrp-soft: #123a42;
     --bull: #4caf82;
     --bull-soft: #1c3327;
     --bear: #e0637a;
@@ -145,6 +157,8 @@
   }
   .card.btc { border-top: 3px solid var(--btc); }
   .card.eth { border-top: 3px solid var(--eth); }
+  .card.sol { border-top: 3px solid var(--sol); }
+  .card.xrp { border-top: 3px solid var(--xrp); }
 
   .card-head {
     display: flex;
@@ -159,6 +173,8 @@
   }
   .card.btc .symbol { color: var(--btc); }
   .card.eth .symbol { color: var(--eth); }
+  .card.sol .symbol { color: var(--sol); }
+  .card.xrp .symbol { color: var(--xrp); }
   .price {
     font-size: 1.65rem;
     font-weight: 500;
@@ -359,10 +375,48 @@
     <div class="diag-grid" id="eth-diagnostics"></div>
     <div class="position-line" id="eth-position">—</div>
   </div>
+
+  <div class="card sol">
+    <div class="card-head">
+      <div>
+        <div class="symbol">SOL / USD</div>
+        <div class="price mono" id="sol-price">—</div>
+      </div>
+      <div class="action-pill hold" id="sol-action">—</div>
+    </div>
+    <div class="confidence-row">
+      <div class="segments" id="sol-segments"></div>
+      <div class="confidence-label" id="sol-confidence-label">—</div>
+    </div>
+    <div class="signal-grid" id="sol-signals"></div>
+    <div id="sol-divergence"></div>
+    <div class="divider-label">Diagnostics</div>
+    <div class="diag-grid" id="sol-diagnostics"></div>
+    <div class="position-line" id="sol-position">—</div>
+  </div>
+
+  <div class="card xrp">
+    <div class="card-head">
+      <div>
+        <div class="symbol">XRP / USD</div>
+        <div class="price mono" id="xrp-price">—</div>
+      </div>
+      <div class="action-pill hold" id="xrp-action">—</div>
+    </div>
+    <div class="confidence-row">
+      <div class="segments" id="xrp-segments"></div>
+      <div class="confidence-label" id="xrp-confidence-label">—</div>
+    </div>
+    <div class="signal-grid" id="xrp-signals"></div>
+    <div id="xrp-divergence"></div>
+    <div class="divider-label">Diagnostics</div>
+    <div class="diag-grid" id="xrp-diagnostics"></div>
+    <div class="position-line" id="xrp-position">—</div>
+  </div>
 </div>
 
 <footer>
-  Confidence-scaled 4-signal system · entries stay a manual decision, only exits auto-execute · read-only page, no orders placed from here · auto-refreshes every 15 min via <a href="https://github.com/vol4life2/tradingBot" target="_blank" rel="noopener">tradingBot</a>
+  Confidence-scaled 4-signal system · entries stay a manual decision, only exits auto-execute · read-only page, no orders placed from here · refreshed on demand via "Refresh now," backed by <a href="https://github.com/vol4life2/tradingBot" target="_blank" rel="noopener">tradingBot</a>
 </footer>
 
 <script>
@@ -375,7 +429,9 @@
 
   function fmtPrice(symbol, v) {
     if (v == null) return "—";
-    const decimals = symbol === "BTC" ? 2 : 2;
+    // More decimals for lower-priced assets (e.g. XRP, ~$1) - 2dp would round away
+    // most of the actual price movement that matters at that scale.
+    const decimals = Math.abs(v) < 10 ? 4 : 2;
     return "$" + Number(v).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
   }
 
@@ -473,10 +529,12 @@
     document.getElementById("updated-at").textContent = fmtTime(doc.updated_at);
     renderAsset("btc", "BTC", doc.btc);
     renderAsset("eth", "ETH", doc.eth);
+    renderAsset("sol", "SOL", doc.sol);
+    renderAsset("xrp", "XRP", doc.xrp);
 
-    const openCount = [doc.btc, doc.eth].filter(a => a && a.position).length;
+    const openCount = [doc.btc, doc.eth, doc.sol, doc.xrp].filter(a => a && a.position).length;
     document.getElementById("position-summary").textContent =
-      openCount === 0 ? "Both flat" : `${openCount} open position${openCount > 1 ? "s" : ""}`;
+      openCount === 0 ? "All flat" : `${openCount} open position${openCount > 1 ? "s" : ""}`;
 
     const staleBanner = document.getElementById("stale-banner");
     const ageMin = doc.updated_at ? (Date.now() - new Date(doc.updated_at).getTime()) / 60000 : Infinity;
@@ -484,9 +542,10 @@
   }
 
   // Plain same-origin fetch of the JSON file the tradingBot repo's check-signals.yml
-  // workflow commits here every ~15 min (or on-demand via the "Refresh now" link
-  // above). No claude.ai runtime involved at all - this page works from any browser,
-  // any device, with no session dependency of any kind.
+  // workflow commits here on demand (via the "Refresh now" link above - no schedule,
+  // by deliberate choice, see that workflow's comments). No claude.ai runtime
+  // involved at all - this page works from any browser, any device, with no session
+  // dependency of any kind.
   async function fetchAndRender() {
     try {
       const res = await fetch("./signals.json", { cache: "no-store" });
