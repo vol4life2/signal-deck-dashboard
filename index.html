@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Deck</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #f4f2ed;
+    --surface: #ffffff;
+    --surface-2: #ebe8e1;
+    --ink: #1b1c1f;
+    --ink-dim: #6b6c70;
+    --line: #ddd9d0;
+    --btc: #b96a1e;
+    --btc-soft: #f3e2ce;
+    --eth: #5462c4;
+    --eth-soft: #e3e5f8;
+    --bull: #2f8f61;
+    --bull-soft: #dcf0e5;
+    --bear: #c14a5f;
+    --bear-soft: #f6dfe3;
+    --neutral: #9a978f;
+    --neutral-soft: #eae7de;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #12141a;
+      --surface: #191c24;
+      --surface-2: #20232c;
+      --ink: #eeeef0;
+      --ink-dim: #8d90a0;
+      --line: #2c2f3a;
+      --btc: #e8964a;
+      --btc-soft: #3a2a1a;
+      --eth: #8b9eff;
+      --eth-soft: #232a4a;
+      --bull: #4caf82;
+      --bull-soft: #1c3327;
+      --bear: #e0637a;
+      --bear-soft: #3a2028;
+      --neutral: #6b6e7a;
+      --neutral-soft: #23252d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #12141a;
+    --surface: #191c24;
+    --surface-2: #20232c;
+    --ink: #eeeef0;
+    --ink-dim: #8d90a0;
+    --line: #2c2f3a;
+    --btc: #e8964a;
+    --btc-soft: #3a2a1a;
+    --eth: #8b9eff;
+    --eth-soft: #232a4a;
+    --bull: #4caf82;
+    --bull-soft: #1c3327;
+    --bear: #e0637a;
+    --bear-soft: #3a2028;
+    --neutral: #6b6e7a;
+    --neutral-soft: #23252d;
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--ground); }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    padding: 20px 16px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+  .header-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .trigger-link {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .trigger-link:hover { background: var(--neutral-soft); }
+  .trigger-link:focus-visible { outline: 2px solid var(--eth); outline-offset: 2px; }
+  h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .subline {
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .subline strong { color: var(--ink); font-weight: 600; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 620px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card.btc { border-top: 3px solid var(--btc); }
+  .card.eth { border-top: 3px solid var(--eth); }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .symbol {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .card.btc .symbol { color: var(--btc); }
+  .card.eth .symbol { color: var(--eth); }
+  .price {
+    font-size: 1.65rem;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .action-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .action-pill.enter { background: var(--bull-soft); color: var(--bull); }
+  .action-pill.exit { background: var(--bear-soft); color: var(--bear); }
+  .action-pill.hold { background: var(--neutral-soft); color: var(--ink-dim); }
+
+  .confidence-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .segments {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+  }
+  .segment {
+    height: 8px;
+    flex: 1;
+    border-radius: 4px;
+    background: var(--neutral-soft);
+  }
+  .segment.lit { background: var(--bull); }
+  .confidence-label {
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    white-space: nowrap;
+  }
+  .confidence-label strong { color: var(--ink); }
+
+  .signal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .signal-chip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.76rem;
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: var(--surface-2);
+  }
+  .signal-chip .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--neutral);
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .signal-chip.on .dot { background: var(--bull); }
+
+  .divider-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    margin-top: 2px;
+  }
+
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 6px;
+  }
+  .diag-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .diag-item .k {
+    font-size: 0.65rem;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .diag-item .v {
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+  .diag-item .v.bull { color: var(--bull); }
+  .diag-item .v.bear { color: var(--bear); }
+
+  .divergence-note {
+    font-size: 0.74rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .divergence-note.bullish { background: var(--bull-soft); color: var(--bull); }
+  .divergence-note.bearish { background: var(--bear-soft); color: var(--bear); }
+
+  .position-line {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: var(--surface-2);
+    color: var(--ink-dim);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .position-line.open { background: var(--eth-soft); color: var(--ink); }
+  .position-line .pl.bull { color: var(--bull); font-weight: 600; }
+  .position-line .pl.bear { color: var(--bear); font-weight: 600; }
+
+  footer {
+    margin-top: 22px;
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+  footer a { color: inherit; }
+
+  .stale-banner {
+    display: none;
+    font-size: 0.78rem;
+    background: var(--bear-soft);
+    color: var(--bear);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .stale-banner.show { display: block; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <h1>Signal Deck</h1>
+    <div class="header-links">
+      <a class="trigger-link" href="https://github.com/vol4life2/tradingBot/actions/workflows/check-signals.yml" target="_blank" rel="noopener">Refresh now →</a>
+      <a class="trigger-link" href="https://github.com/vol4life2/tradingBot/actions/workflows/manual-trade-trigger.yml" target="_blank" rel="noopener">Trigger trade →</a>
+    </div>
+  </div>
+  <div class="subline">
+    <span>Last check: <strong id="updated-at">—</strong></span>
+    <span id="position-summary">—</span>
+  </div>
+</header>
+
+<div class="stale-banner" id="stale-banner">Data is over 30 minutes old — the background check may have paused.</div>
+
+<div class="cards" id="cards">
+  <div class="card btc">
+    <div class="card-head">
+      <div>
+        <div class="symbol">BTC / USD</div>
+        <div class="price mono" id="btc-price">—</div>
+      </div>
+      <div class="action-pill hold" id="btc-action">—</div>
+    </div>
+    <div class="confidence-row">
+      <div class="segments" id="btc-segments"></div>
+      <div class="confidence-label" id="btc-confidence-label">—</div>
+    </div>
+    <div class="signal-grid" id="btc-signals"></div>
+    <div id="btc-divergence"></div>
+    <div class="divider-label">Diagnostics</div>
+    <div class="diag-grid" id="btc-diagnostics"></div>
+    <div class="position-line" id="btc-position">—</div>
+  </div>
+
+  <div class="card eth">
+    <div class="card-head">
+      <div>
+        <div class="symbol">ETH / USD</div>
+        <div class="price mono" id="eth-price">—</div>
+      </div>
+      <div class="action-pill hold" id="eth-action">—</div>
+    </div>
+    <div class="confidence-row">
+      <div class="segments" id="eth-segments"></div>
+      <div class="confidence-label" id="eth-confidence-label">—</div>
+    </div>
+    <div class="signal-grid" id="eth-signals"></div>
+    <div id="eth-divergence"></div>
+    <div class="divider-label">Diagnostics</div>
+    <div class="diag-grid" id="eth-diagnostics"></div>
+    <div class="position-line" id="eth-position">—</div>
+  </div>
+</div>
+
+<footer>
+  Confidence-scaled 4-signal system · entries stay a manual decision, only exits auto-execute · read-only page, no orders placed from here · auto-refreshes every 15 min via <a href="https://github.com/vol4life2/tradingBot" target="_blank" rel="noopener">tradingBot</a>
+</footer>
+
+<script>
+  const SIGNAL_LABELS = {
+    sma_bullish: "SMA cross",
+    adx_confirms_long: "ADX trend",
+    mtf_aligned_bullish: "MTF align",
+    multi_factor_bullish: "MACD/RSI/VWAP/Vol",
+  };
+
+  function fmtPrice(symbol, v) {
+    if (v == null) return "—";
+    const decimals = symbol === "BTC" ? 2 : 2;
+    return "$" + Number(v).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return "—";
+    const d = new Date(iso);
+    return d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  }
+
+  function renderAsset(prefix, symbolLabel, data) {
+    if (!data) return;
+    document.getElementById(`${prefix}-price`).textContent = fmtPrice(symbolLabel, data.close);
+
+    const actionEl = document.getElementById(`${prefix}-action`);
+    const action = data.action || "hold";
+    actionEl.textContent = action === "enter" ? "Enter" : action === "exit" ? "Exit" : "Hold";
+    actionEl.className = "action-pill " + (action === "enter" ? "enter" : action === "exit" ? "exit" : "hold");
+
+    const count = data.confirming_count ?? 0;
+    const total = data.total_signals ?? 4;
+    const segWrap = document.getElementById(`${prefix}-segments`);
+    segWrap.innerHTML = "";
+    for (let i = 0; i < total; i++) {
+      const seg = document.createElement("div");
+      seg.className = "segment" + (i < count ? " lit" : "");
+      segWrap.appendChild(seg);
+    }
+    const riskPct = data.risk_pct;
+    document.getElementById(`${prefix}-confidence-label`).innerHTML =
+      `<strong>${count}/${total}</strong>` + (riskPct != null ? ` · ${riskPct}% risk` : " · below floor");
+
+    const sigWrap = document.getElementById(`${prefix}-signals`);
+    sigWrap.innerHTML = "";
+    const signals = data.signals || {};
+    for (const key of Object.keys(SIGNAL_LABELS)) {
+      const chip = document.createElement("div");
+      chip.className = "signal-chip" + (signals[key] ? " on" : "");
+      chip.innerHTML = `<span>${SIGNAL_LABELS[key]}</span><span class="dot"></span>`;
+      sigWrap.appendChild(chip);
+    }
+
+    const diag = data.diagnostics || {};
+    const diagWrap = document.getElementById(`${prefix}-diagnostics`);
+    diagWrap.innerHTML = "";
+    const diagItems = [
+      ["RSI", diag.rsi_now, diag.rsi_bull],
+      ["MFI", diag.mfi_now, diag.mfi_bull],
+      ["CMF", diag.cmf_now, diag.cmf_bull],
+      ["Mom. Money Flow", diag.momentum_money_flow_now, diag.momentum_money_flow_bull],
+      ["MACD", diag.macd_now, diag.macd_bull],
+      ["Vol. profile", diag.volume_profile_position, diag.volume_profile_position === "above_value_area"],
+    ];
+    for (const [label, val, bull] of diagItems) {
+      const item = document.createElement("div");
+      item.className = "diag-item";
+      let display;
+      if (val == null) display = "—";
+      else if (typeof val === "number") display = Math.abs(val) < 3 ? val.toFixed(3) : val.toFixed(1);
+      else display = val.replace(/_/g, " ");
+      item.innerHTML = `<span class="k">${label}</span><span class="v ${bull === true ? "bull" : bull === false ? "bear" : ""} mono">${display}</span>`;
+      diagWrap.appendChild(item);
+    }
+
+    const divWrap = document.getElementById(`${prefix}-divergence`);
+    divWrap.innerHTML = "";
+    if (diag.divergence_confirmed) {
+      const note = document.createElement("div");
+      note.className = "divergence-note " + diag.divergence_confirmed;
+      note.innerHTML = `<span>MACD + RSI confirmed divergence</span><span>${diag.divergence_confirmed}</span>`;
+      divWrap.appendChild(note);
+    } else if (diag.rsi_divergence || diag.macd_divergence) {
+      const which = diag.rsi_divergence ? "RSI" : "MACD";
+      const dir = diag.rsi_divergence || diag.macd_divergence;
+      const note = document.createElement("div");
+      note.className = "divergence-note " + dir;
+      note.innerHTML = `<span>${which} divergence (unconfirmed)</span><span>${dir}</span>`;
+      divWrap.appendChild(note);
+    }
+
+    const posEl = document.getElementById(`${prefix}-position`);
+    if (data.position) {
+      posEl.className = "position-line open";
+      const pl = data.position.unrealized_pl;
+      const plClass = pl > 0 ? "pl bull" : pl < 0 ? "pl bear" : "pl";
+      posEl.innerHTML = `<span>Open · ${data.position.qty} @ ${fmtPrice(symbolLabel, data.position.entry_price)}</span>` +
+        (pl != null ? `<span class="${plClass} mono">${pl > 0 ? "+" : ""}$${pl.toFixed(2)}</span>` : "");
+    } else {
+      posEl.className = "position-line";
+      posEl.textContent = "Flat — no open position";
+    }
+  }
+
+  function renderAll(doc) {
+    if (!doc) return;
+    document.getElementById("updated-at").textContent = fmtTime(doc.updated_at);
+    renderAsset("btc", "BTC", doc.btc);
+    renderAsset("eth", "ETH", doc.eth);
+
+    const openCount = [doc.btc, doc.eth].filter(a => a && a.position).length;
+    document.getElementById("position-summary").textContent =
+      openCount === 0 ? "Both flat" : `${openCount} open position${openCount > 1 ? "s" : ""}`;
+
+    const staleBanner = document.getElementById("stale-banner");
+    const ageMin = doc.updated_at ? (Date.now() - new Date(doc.updated_at).getTime()) / 60000 : Infinity;
+    staleBanner.className = "stale-banner" + (ageMin > 30 ? " show" : "");
+  }
+
+  // Plain same-origin fetch of the JSON file the tradingBot repo's check-signals.yml
+  // workflow commits here every ~15 min (or on-demand via the "Refresh now" link
+  // above). No claude.ai runtime involved at all - this page works from any browser,
+  // any device, with no session dependency of any kind.
+  async function fetchAndRender() {
+    try {
+      const res = await fetch("./signals.json", { cache: "no-store" });
+      if (!res.ok) return;
+      renderAll(await res.json());
+    } catch (e) {
+      // keep showing the last successful render rather than blanking the page
+    }
+  }
+
+  fetchAndRender();
+  setInterval(fetchAndRender, 60000);
+</script>
+</body>
+</html>
