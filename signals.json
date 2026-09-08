@@ -1,38 +1,42 @@
 {
-  "updated_at": "2026-09-08T01:03:41.224Z",
+  "updated_at": "2026-09-08T02:03:43.648Z",
   "btc": {
-    "close": 79295.49,
-    "action": "enter",
-    "confirming_count": 2,
+    "close": 79385.62,
+    "action": "hold",
+    "confirming_count": 3,
     "total_signals": 4,
-    "risk_pct": 0.5,
+    "risk_pct": 1.25,
     "signals": {
       "sma_bullish": true,
-      "adx_confirms_long": false,
+      "adx_confirms_long": true,
       "mtf_aligned_bullish": false,
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 64.17489414105437,
+      "rsi_now": 62.435395669218224,
       "rsi_bull": true,
-      "mfi_now": 52.61683847850173,
-      "mfi_bull": true,
-      "cmf_now": 0.5238901471384385,
-      "cmf_bull": true,
-      "momentum_money_flow_now": 32.62545049971029,
+      "mfi_now": 40.53869969931204,
+      "mfi_bull": false,
+      "cmf_now": -0.38864045538628067,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 31.810019583982836,
       "momentum_money_flow_bull": false,
-      "macd_now": 51.687244319415186,
+      "macd_now": 69.73101360659348,
       "macd_bull": true,
       "rsi_divergence": null,
       "macd_divergence": null,
       "divergence_confirmed": null,
-      "volume_profile_position": "below_value_area"
+      "volume_profile_position": "inside_value_area"
     },
-    "position": null
+    "position": {
+      "qty": 0.006286199,
+      "entry_price": 79326.47,
+      "unrealized_pl": 0.507485
+    }
   },
   "eth": {
-    "close": 2494.967,
-    "action": "enter",
+    "close": 2501.8595,
+    "action": "hold",
     "confirming_count": 4,
     "total_signals": 4,
     "risk_pct": 2,
@@ -43,81 +47,93 @@
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 61.43427082609123,
+      "rsi_now": 64.27422201453297,
       "rsi_bull": true,
-      "mfi_now": 11.42222463833157,
+      "mfi_now": 3.837453451504956,
       "mfi_bull": false,
-      "cmf_now": 0.6187387053146584,
-      "cmf_bull": true,
-      "momentum_money_flow_now": 77.67846260106458,
+      "cmf_now": -0.8514425704748044,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 85.81038395844541,
       "momentum_money_flow_bull": true,
-      "macd_now": 1.6087599558672991,
-      "macd_bull": true,
-      "rsi_divergence": null,
-      "macd_divergence": null,
-      "divergence_confirmed": null,
-      "volume_profile_position": "below_value_area"
-    },
-    "position": null
-  },
-  "sol": {
-    "close": 104.13,
-    "action": "enter",
-    "confirming_count": 3,
-    "total_signals": 4,
-    "risk_pct": 1.25,
-    "signals": {
-      "sma_bullish": true,
-      "adx_confirms_long": true,
-      "mtf_aligned_bullish": false,
-      "multi_factor_bullish": true
-    },
-    "diagnostics": {
-      "rsi_now": 63.54768027861735,
-      "rsi_bull": true,
-      "mfi_now": 44.09096285322765,
-      "mfi_bull": false,
-      "cmf_now": -0.19141329893201822,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 29.387587340731596,
-      "momentum_money_flow_bull": false,
-      "macd_now": 0.06792428658877725,
-      "macd_bull": true,
-      "rsi_divergence": null,
-      "macd_divergence": "bullish",
-      "divergence_confirmed": null,
-      "volume_profile_position": "below_value_area"
-    },
-    "position": null
-  },
-  "xrp": {
-    "close": 1.40091,
-    "action": "enter",
-    "confirming_count": 3,
-    "total_signals": 4,
-    "risk_pct": 1.25,
-    "signals": {
-      "sma_bullish": true,
-      "adx_confirms_long": true,
-      "mtf_aligned_bullish": false,
-      "multi_factor_bullish": true
-    },
-    "diagnostics": {
-      "rsi_now": 62.29261804704847,
-      "rsi_bull": true,
-      "mfi_now": 98.98531413397771,
-      "mfi_bull": true,
-      "cmf_now": -0.05007394457832552,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 29.627906976744224,
-      "momentum_money_flow_bull": false,
-      "macd_now": 0.0016170237970931645,
+      "macd_now": 3.4161199958562065,
       "macd_bull": true,
       "rsi_divergence": null,
       "macd_divergence": null,
       "divergence_confirmed": null,
       "volume_profile_position": "inside_value_area"
     },
-    "position": null
+    "position": {
+      "qty": 0.799020917,
+      "entry_price": 2496.836,
+      "unrealized_pl": 4.126144
+    }
+  },
+  "sol": {
+    "close": 104.313,
+    "action": "hold",
+    "confirming_count": 3,
+    "total_signals": 4,
+    "risk_pct": 1.25,
+    "signals": {
+      "sma_bullish": true,
+      "adx_confirms_long": true,
+      "mtf_aligned_bullish": false,
+      "multi_factor_bullish": true
+    },
+    "diagnostics": {
+      "rsi_now": 63.291839997776286,
+      "rsi_bull": true,
+      "mfi_now": 34.130029953370055,
+      "mfi_bull": false,
+      "cmf_now": 0.1592785619425948,
+      "cmf_bull": true,
+      "momentum_money_flow_now": 34.093186372745826,
+      "momentum_money_flow_bull": false,
+      "macd_now": 0.12587560976719203,
+      "macd_bull": true,
+      "rsi_divergence": null,
+      "macd_divergence": null,
+      "divergence_confirmed": null,
+      "volume_profile_position": "inside_value_area"
+    },
+    "position": {
+      "qty": 11.967994145,
+      "entry_price": 104.2,
+      "unrealized_pl": 0.35904
+    }
+  },
+  "xrp": {
+    "close": 1.403,
+    "action": "hold",
+    "confirming_count": 3,
+    "total_signals": 4,
+    "risk_pct": 1.25,
+    "signals": {
+      "sma_bullish": true,
+      "adx_confirms_long": true,
+      "mtf_aligned_bullish": false,
+      "multi_factor_bullish": true
+    },
+    "diagnostics": {
+      "rsi_now": 59.07355612627956,
+      "rsi_bull": true,
+      "mfi_now": 81.80348671298539,
+      "mfi_bull": true,
+      "cmf_now": -0.1216897609786291,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 29.88281250000024,
+      "momentum_money_flow_bull": false,
+      "macd_now": 0.001917895618364751,
+      "macd_bull": false,
+      "rsi_divergence": null,
+      "macd_divergence": null,
+      "divergence_confirmed": null,
+      "volume_profile_position": "inside_value_area"
+    },
+    "position": {
+      "qty": 889.073031127,
+      "entry_price": 1.403,
+      "unrealized_pl": -3.556292
+    }
   }
 }
