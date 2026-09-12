@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-12T18:03:50.667Z",
+  "updated_at": "2026-09-12T18:04:08.141Z",
   "btc": {
     "close": 77175.188,
     "action": "hold",
@@ -31,7 +31,7 @@
     "position": null
   },
   "eth": {
-    "close": 2525.176,
+    "close": 2524.131,
     "action": "hold",
     "confirming_count": 0,
     "total_signals": 4,
@@ -43,15 +43,15 @@
       "multi_factor_bullish": false
     },
     "diagnostics": {
-      "rsi_now": 32.790680920229946,
+      "rsi_now": 30.70871957687308,
       "rsi_bull": false,
-      "mfi_now": 42.33665559140008,
+      "mfi_now": 49.053012903435516,
       "mfi_bull": false,
-      "cmf_now": -0.02427782947065169,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 44.814688739631734,
+      "cmf_now": 0.11054892287863596,
+      "cmf_bull": true,
+      "momentum_money_flow_now": 42.55311821570687,
       "momentum_money_flow_bull": false,
-      "macd_now": -2.8271640817038133,
+      "macd_now": -2.8867034895206416,
       "macd_bull": false,
       "rsi_divergence": null,
       "macd_divergence": null,
