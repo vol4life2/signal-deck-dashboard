@@ -1,37 +1,7 @@
 {
-  "updated_at": "2026-09-13T03:04:07.118Z",
+  "updated_at": "2026-09-13T04:04:08.960Z",
   "btc": {
-    "close": 77272.125,
-    "action": "hold",
-    "confirming_count": 2,
-    "total_signals": 4,
-    "risk_pct": null,
-    "signals": {
-      "sma_bullish": true,
-      "adx_confirms_long": false,
-      "mtf_aligned_bullish": false,
-      "multi_factor_bullish": true
-    },
-    "diagnostics": {
-      "rsi_now": 51.416964997556306,
-      "rsi_bull": true,
-      "mfi_now": 53.57171296594054,
-      "mfi_bull": true,
-      "cmf_now": -0.14105968200325283,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 24.632341437467474,
-      "momentum_money_flow_bull": false,
-      "macd_now": 6.888266014284454,
-      "macd_bull": true,
-      "rsi_divergence": "bearish",
-      "macd_divergence": "bearish",
-      "divergence_confirmed": "bearish",
-      "volume_profile_position": "inside_value_area"
-    },
-    "position": null
-  },
-  "eth": {
-    "close": 2520.47,
+    "close": 77201.5255,
     "action": "hold",
     "confirming_count": 0,
     "total_signals": 4,
@@ -43,16 +13,46 @@
       "multi_factor_bullish": false
     },
     "diagnostics": {
-      "rsi_now": 39.230572891257694,
+      "rsi_now": 41.36317571836948,
       "rsi_bull": false,
-      "mfi_now": 7.955009327870158,
-      "mfi_bull": false,
-      "cmf_now": -0.4784549385016652,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 24.229031394442746,
+      "mfi_now": 54.44193909823429,
+      "mfi_bull": true,
+      "cmf_now": 0.016044743747869895,
+      "cmf_bull": true,
+      "momentum_money_flow_now": 14.1597335346721,
       "momentum_money_flow_bull": false,
-      "macd_now": -0.708290487999875,
+      "macd_now": -19.032895945114433,
       "macd_bull": false,
+      "rsi_divergence": null,
+      "macd_divergence": null,
+      "divergence_confirmed": null,
+      "volume_profile_position": "below_value_area"
+    },
+    "position": null
+  },
+  "eth": {
+    "close": 2520.363,
+    "action": "hold",
+    "confirming_count": 0,
+    "total_signals": 4,
+    "risk_pct": null,
+    "signals": {
+      "sma_bullish": false,
+      "adx_confirms_long": false,
+      "mtf_aligned_bullish": false,
+      "multi_factor_bullish": false
+    },
+    "diagnostics": {
+      "rsi_now": 43.085668692083736,
+      "rsi_bull": false,
+      "mfi_now": 1.524462960622074,
+      "mfi_bull": false,
+      "cmf_now": -0.10413289386193818,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 17.933506365096513,
+      "momentum_money_flow_bull": false,
+      "macd_now": -0.7920342490906478,
+      "macd_bull": true,
       "rsi_divergence": null,
       "macd_divergence": null,
       "divergence_confirmed": null,
@@ -61,7 +61,7 @@
     "position": null
   },
   "sol": {
-    "close": 101.865,
+    "close": 101.55,
     "action": "hold",
     "confirming_count": 0,
     "total_signals": 4,
@@ -73,50 +73,50 @@
       "multi_factor_bullish": false
     },
     "diagnostics": {
-      "rsi_now": 45.80517985460452,
+      "rsi_now": 35.842399016915195,
       "rsi_bull": false,
-      "mfi_now": 1.7315085869067275,
+      "mfi_now": 14.383616158732764,
       "mfi_bull": false,
-      "cmf_now": 0.8113063029267518,
+      "cmf_now": 0.11034377430730001,
       "cmf_bull": true,
-      "momentum_money_flow_now": 16.591388311179127,
+      "momentum_money_flow_now": 14.669012144965476,
       "momentum_money_flow_bull": false,
-      "macd_now": 0.024556170690630097,
+      "macd_now": -0.08055558765457249,
       "macd_bull": false,
       "rsi_divergence": null,
       "macd_divergence": null,
       "divergence_confirmed": null,
-      "volume_profile_position": "inside_value_area"
+      "volume_profile_position": "below_value_area"
     },
     "position": null
   },
   "xrp": {
-    "close": 1.3675,
-    "action": "enter",
-    "confirming_count": 3,
+    "close": 1.363425,
+    "action": "hold",
+    "confirming_count": 0,
     "total_signals": 4,
-    "risk_pct": 0.5,
+    "risk_pct": null,
     "signals": {
-      "sma_bullish": true,
-      "adx_confirms_long": true,
+      "sma_bullish": false,
+      "adx_confirms_long": false,
       "mtf_aligned_bullish": false,
-      "multi_factor_bullish": true
+      "multi_factor_bullish": false
     },
     "diagnostics": {
-      "rsi_now": 53.551925804136765,
-      "rsi_bull": true,
-      "mfi_now": 8.809033595363559,
+      "rsi_now": 40.25163411015404,
+      "rsi_bull": false,
+      "mfi_now": 31.787581975339947,
       "mfi_bull": false,
-      "cmf_now": -0.2759753218267181,
-      "cmf_bull": false,
-      "momentum_money_flow_now": 29.672897196261626,
+      "cmf_now": 0.11454073733010564,
+      "cmf_bull": true,
+      "momentum_money_flow_now": 14.341932662877497,
       "momentum_money_flow_bull": false,
-      "macd_now": 0.0005869241774476563,
-      "macd_bull": true,
+      "macd_now": -0.0008820510328069187,
+      "macd_bull": false,
       "rsi_divergence": null,
       "macd_divergence": null,
       "divergence_confirmed": null,
-      "volume_profile_position": "inside_value_area"
+      "volume_profile_position": "below_value_area"
     },
     "position": null
   }
