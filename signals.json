@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-09-14T17:04:05.294Z",
+  "updated_at": "2026-09-14T18:04:07.818Z",
   "btc": {
-    "close": 78802.553,
+    "close": 78950.4,
     "action": "enter",
     "confirming_count": 4,
     "total_signals": 4,
@@ -13,15 +13,15 @@
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 59.756817631466305,
+      "rsi_now": 60.210101224567715,
       "rsi_bull": true,
-      "mfi_now": 62.2566818754129,
+      "mfi_now": 73.11901654289046,
       "mfi_bull": true,
-      "cmf_now": 0.2342572853801041,
+      "cmf_now": 0.453983562205856,
       "cmf_bull": true,
-      "momentum_money_flow_now": 29.977810834051404,
+      "momentum_money_flow_now": 33.29607833359047,
       "momentum_money_flow_bull": false,
-      "macd_now": 112.72280863474589,
+      "macd_now": 106.91663327306742,
       "macd_bull": true,
       "rsi_divergence": null,
       "macd_divergence": null,
@@ -31,7 +31,7 @@
     "position": null
   },
   "eth": {
-    "close": 2527.32,
+    "close": 2533.6875,
     "action": "enter",
     "confirming_count": 4,
     "total_signals": 4,
@@ -43,17 +43,17 @@
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 60.31024752020121,
+      "rsi_now": 61.047917179497574,
       "rsi_bull": true,
-      "mfi_now": 7.698438258627888,
+      "mfi_now": 40.99247818138988,
       "mfi_bull": false,
-      "cmf_now": 0.28471275925543577,
-      "cmf_bull": true,
-      "momentum_money_flow_now": 83.73528217620797,
+      "cmf_now": -0.29513245529797744,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 74.95216602070354,
       "momentum_money_flow_bull": true,
-      "macd_now": 6.239594994637628,
-      "macd_bull": true,
-      "rsi_divergence": null,
+      "macd_now": 4.626618488042823,
+      "macd_bull": false,
+      "rsi_divergence": "bearish",
       "macd_divergence": null,
       "divergence_confirmed": null,
       "volume_profile_position": "above_value_area"
@@ -61,11 +61,11 @@
     "position": null
   },
   "sol": {
-    "close": 102.5635,
-    "action": "hold",
+    "close": 103.06,
+    "action": "enter",
     "confirming_count": 4,
     "total_signals": 4,
-    "risk_pct": null,
+    "risk_pct": 2,
     "signals": {
       "sma_bullish": true,
       "adx_confirms_long": true,
@@ -73,17 +73,17 @@
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 58.81682135713715,
+      "rsi_now": 62.0274937166159,
       "rsi_bull": true,
-      "mfi_now": 96.52835161062183,
+      "mfi_now": 50.7444126468056,
       "mfi_bull": true,
-      "cmf_now": 0.5395170853717444,
-      "cmf_bull": true,
-      "momentum_money_flow_now": 79.64448298287456,
+      "cmf_now": -0.047885097341589,
+      "cmf_bull": false,
+      "momentum_money_flow_now": 80.34493474207588,
       "momentum_money_flow_bull": true,
-      "macd_now": 0.2361882143884202,
-      "macd_bull": true,
-      "rsi_divergence": null,
+      "macd_now": 0.2517718863991405,
+      "macd_bull": false,
+      "rsi_divergence": "bearish",
       "macd_divergence": null,
       "divergence_confirmed": null,
       "volume_profile_position": "above_value_area"
@@ -91,7 +91,7 @@
     "position": null
   },
   "xrp": {
-    "close": 1.418775,
+    "close": 1.435225,
     "action": "hold",
     "confirming_count": 4,
     "total_signals": 4,
@@ -103,15 +103,15 @@
       "multi_factor_bullish": true
     },
     "diagnostics": {
-      "rsi_now": 64.91986418339758,
+      "rsi_now": 76.44541034187071,
       "rsi_bull": true,
-      "mfi_now": 83.12533646410506,
+      "mfi_now": 80.57601878106692,
       "mfi_bull": true,
-      "cmf_now": -0.15532971302405876,
+      "cmf_now": -0.5503111300523005,
       "cmf_bull": false,
-      "momentum_money_flow_now": 84.19056696522067,
+      "momentum_money_flow_now": 90.17669141515341,
       "momentum_money_flow_bull": true,
-      "macd_now": 0.004907111112631091,
+      "macd_now": 0.007321565381978701,
       "macd_bull": true,
       "rsi_divergence": null,
       "macd_divergence": null,
