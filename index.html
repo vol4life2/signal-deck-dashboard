@@ -21,6 +21,8 @@
     --sol-soft: #ede9fe;
     --xrp: #0891b2;
     --xrp-soft: #cffafe;
+    --ada: #0033ad;
+    --ada-soft: #dbe7f9;
     --bull: #2f8f61;
     --bull-soft: #dcf0e5;
     --bear: #c14a5f;
@@ -44,6 +46,8 @@
       --sol-soft: #2e2350;
       --xrp: #22d3ee;
       --xrp-soft: #123a42;
+      --ada: #5b9bd9;
+      --ada-soft: #1a2c42;
       --bull: #4caf82;
       --bull-soft: #1c3327;
       --bear: #e0637a;
@@ -67,6 +71,8 @@
     --sol-soft: #2e2350;
     --xrp: #22d3ee;
     --xrp-soft: #123a42;
+    --ada: #5b9bd9;
+    --ada-soft: #1a2c42;
     --bull: #4caf82;
     --bull-soft: #1c3327;
     --bear: #e0637a;
@@ -159,6 +165,7 @@
   .card.eth { border-top: 3px solid var(--eth); }
   .card.sol { border-top: 3px solid var(--sol); }
   .card.xrp { border-top: 3px solid var(--xrp); }
+  .card.ada { border-top: 3px solid var(--ada); }
 
   .card-head {
     display: flex;
@@ -175,6 +182,7 @@
   .card.eth .symbol { color: var(--eth); }
   .card.sol .symbol { color: var(--sol); }
   .card.xrp .symbol { color: var(--xrp); }
+  .card.ada .symbol { color: var(--ada); }
   .price {
     font-size: 1.65rem;
     font-weight: 500;
@@ -413,6 +421,25 @@
     <div class="diag-grid" id="xrp-diagnostics"></div>
     <div class="position-line" id="xrp-position">—</div>
   </div>
+
+  <div class="card ada">
+    <div class="card-head">
+      <div>
+        <div class="symbol">ADA / USD</div>
+        <div class="price mono" id="ada-price">—</div>
+      </div>
+      <div class="action-pill hold" id="ada-action">—</div>
+    </div>
+    <div class="confidence-row">
+      <div class="segments" id="ada-segments"></div>
+      <div class="confidence-label" id="ada-confidence-label">—</div>
+    </div>
+    <div class="signal-grid" id="ada-signals"></div>
+    <div id="ada-divergence"></div>
+    <div class="divider-label">Diagnostics</div>
+    <div class="diag-grid" id="ada-diagnostics"></div>
+    <div class="position-line" id="ada-position">—</div>
+  </div>
 </div>
 
 <footer>
@@ -531,8 +558,9 @@
     renderAsset("eth", "ETH", doc.eth);
     renderAsset("sol", "SOL", doc.sol);
     renderAsset("xrp", "XRP", doc.xrp);
+    renderAsset("ada", "ADA", doc.ada);
 
-    const openCount = [doc.btc, doc.eth, doc.sol, doc.xrp].filter(a => a && a.position).length;
+    const openCount = [doc.btc, doc.eth, doc.sol, doc.xrp, doc.ada].filter(a => a && a.position).length;
     document.getElementById("position-summary").textContent =
       openCount === 0 ? "All flat" : `${openCount} open position${openCount > 1 ? "s" : ""}`;
 
